@@ -1,36 +1,10 @@
 <meta charset="utf8" />
 <html>
 <script src='../dist/sql-wasm-debug.js'></script>
-<script>
-  config = {
-    locateFile: (filename, prefix) => {
-      console.log(`prefix is : ${prefix}`);
-      return `../dist/${filename}`;
-    }
-  }
-  // The `initSqlJs` function is globally provided by all of the main dist files if loaded in the browser.
-  // We must specify this locateFile function if we are loading a wasm file from anywhere other than the current html page's folder.
-  initSqlJs(config).then(function (SQL) {
-	    //Create the database
-	  var xhr = new XMLHttpRequest();
-	xhr.open('GET', '../shrubs4.sqlite', true);
-	xhr.responseType = 'arraybuffer';
-	  console.log(xhr)
-	let contents = []
-	xhr.onload = function(e) {
-	  var uInt8Array = new Uint8Array(this.response);
-	  var db = new SQL.Database(uInt8Array);
-	  contents = db.exec("SELECT * FROM shrub");
-	console.log(contents[0].values)
-	  // contents is now [{columns:['col1','col2',...], values:[[first row], [second row], ...]}]
-	};
-	xhr.send();
-   
-  });
-</script>
-
+<script src="app.js" defer></script>
 <body>
-  Output is in Javscript console
+    <div class="big">
+    </div>
 </body>
 
 </html>

@@ -4,6 +4,12 @@
   display: table;
 }
 .sqContainer{
-    transform:rotate(90deg)
+    ##transform:rotate(90deg); scale(.5);
+    width:100%;
+    height:100%;
 
+}
+.lilPixels{
+    height:5rem;
+    width:100%;
 }

@@ -9,15 +9,13 @@
   initSqlJs(config).then(function (SQL) {
 	    //Create the database
 	  var xhr = new XMLHttpRequest();
-	xhr.open('GET', '../trunksale11.sqlite', true);
+	xhr.open('GET', '../trunksale9.sqlite', true);
 	xhr.responseType = 'arraybuffer';
-	  console.log(xhr)
 	let contents = []
 	xhr.onload = function(e) {
 	  var uInt8Array = new Uint8Array(this.response);
 	  var db = new SQL.Database(uInt8Array);
 	  contents = db.exec("SELECT * FROM item");
-            console.log(contents[0].values)
             const bodyMain = document.querySelector('.big')
             const newDiv = document.createElement("div")
             contents[0].values.forEach(e => getColor(e[3]))
@@ -34,7 +32,6 @@
             squareContainer.setAttribute('class', 'sqContainer')
             squareContainer.style.display="grid"
             squareContainer.style.height = "auto"
-            squareContainer.style.width = "100%"
             bodyMain.appendChild(squareContainer)
                 const theColors = colorsRaw.map((e,i,array) => {
                     const coordinates = e.match(/\d+, \d+/)
@@ -58,11 +55,12 @@
                     }
                     const rgb = `${r}, ${g}, ${b}` 
                     const lilPixels = document.createElement("div")
-                    lilPixels.innerText = `column ${x}, row ${y}`
+                    lilPixels.setAttribute('class','lilPixels')
+                    lilPixels.innerText = ``
                     lilPixels.style.backgroundColor = `rgb(${r},${g},${b})`
-                    lilPixels.style.gridArea=`${x}/${y}`
-                    lilPixels.style.height = "100%"
-                    lilPixels.style.width = "100%"
+                    lilPixels.style.gridArea=`${y}/${x}`
+                    //lilPixels.style.height = "100%"
+                    //lilPixels.style.width = "100%"
                     squareContainer.appendChild(lilPixels)
                 })
                     const clearFix = document.createElement("div")

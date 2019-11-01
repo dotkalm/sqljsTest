@@ -1,0 +1,9 @@
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.sqContainer{
+    transform:rotate(90deg)
+
+}

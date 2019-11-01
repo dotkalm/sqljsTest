@@ -9,7 +9,7 @@
   initSqlJs(config).then(function (SQL) {
 	    //Create the database
 	  var xhr = new XMLHttpRequest();
-	xhr.open('GET', '../trunksale9.sqlite', true);
+	xhr.open('GET', '../trunksale11.sqlite', true);
 	xhr.responseType = 'arraybuffer';
 	  console.log(xhr)
 	let contents = []
@@ -30,7 +30,12 @@
             const bodyMain = document.querySelector('.big')
             const colorsRaw = props.split(/\n/)
             colorsRaw.pop()
-            console.log(colorsRaw)
+            const squareContainer = document.createElement("div")
+            squareContainer.setAttribute('class', 'sqContainer')
+            squareContainer.style.display="grid"
+            squareContainer.style.height = "auto"
+            squareContainer.style.width = "100%"
+            bodyMain.appendChild(squareContainer)
                 const theColors = colorsRaw.map((e,i,array) => {
                     const coordinates = e.match(/\d+, \d+/)
                     let x = null;
@@ -39,7 +44,6 @@
                         const xY = coordinates[0].split(', ')
                         x = +xY[0] +1
                         y = +xY[1] +1
-                        console.log(xY, "hmm")
                     }
                     let r = null;
                     let g = null;
@@ -53,12 +57,17 @@
                         b = +rgb[2];
                     }
                     const rgb = `${r}, ${g}, ${b}` 
-                    console.log(x, y, r, g, b)
                     const lilPixels = document.createElement("div")
                     lilPixels.innerText = `column ${x}, row ${y}`
                     lilPixels.style.backgroundColor = `rgb(${r},${g},${b})`
-                    bodyMain.appendChild(lilPixels)
+                    lilPixels.style.gridArea=`${x}/${y}`
+                    lilPixels.style.height = "100%"
+                    lilPixels.style.width = "100%"
+                    squareContainer.appendChild(lilPixels)
                 })
+                    const clearFix = document.createElement("div")
+                    clearFix.setAttribute('class', 'clearfix::after')
+                    bodyMain.appendChild(clearFix)
 
         }
    

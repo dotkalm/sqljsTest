@@ -33,27 +33,41 @@
             squareContainer.style.display="grid"
             squareContainer.style.height = "auto"
             bodyMain.appendChild(squareContainer)
+                //console.log(colorsRaw)
+                const xDictionary = []
                 const theColors = colorsRaw.map((e,i,array) => {
                     const coordinates = e.match(/\d+, \d+/)
+                    //console.log(coordinates)
                     let x = null;
                     let y = null;
                     if(coordinates !== null){
                         const xY = coordinates[0].split(', ')
                         x = +xY[0] +1
                         y = +xY[1] +1
+                        if (xDictionary[0] == undefined){
+                            let r = null;
+                            let g = null;
+                            let b = null;
+                            const rgbColors = e.replace(/.+\t/,'').replace(/\(|\)/g,'')
+                            if(rgbColors !== ''){
+                                const rgb = rgbColors.split(', ') 
+                                r = +rgb[0];
+                                g = +rgb[1];
+                                b = +rgb[2];
+                            }
+                            const newDivWithGradient = document.createElement("div")
+                            newDivWithGradient.setAttribute('class', `column${x}`)
+                            newDivWithGradient..style.backgroundColor = `rgb(${r},${g},${b})`
+                            const innerY = {x : i}
+                            innerY[x] = xY
+                            xDictionary.push(innerY)
+                            
+                        } else {
+                            xDictionary.push(y)
+                        }
+                  //      console.log(xY)
                     }
-                    let r = null;
-                    let g = null;
-                    let b = null;
-                    console.log(coordinates) 
-                    const rgbColors = e.replace(/.+\t/,'').replace(/\(|\)/g,'')
-                    if(rgbColors !== ''){
-                        const rgb = rgbColors.split(', ') 
-                        r = +rgb[0];
-                        g = +rgb[1];
-                        b = +rgb[2];
-                    }
-                    const rgb = `${r}, ${g}, ${b}` 
+                    console.log(xDictionary)
                     const lilPixels = document.createElement("div")
                     lilPixels.setAttribute('class','lilPixels')
                     lilPixels.innerText = ``

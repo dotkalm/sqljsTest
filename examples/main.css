@@ -1,3 +1,6 @@
+body{
+    background-image: linear-gradient(to top right, orange, black, darkGreen, gray);
+}
 .clearfix::after {
   content: "";
   clear: both;

@@ -1,0 +1,4 @@
+AddType application/wasm                            wasm
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE application/wasm
+</IfModule>

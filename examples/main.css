@@ -1,0 +1,17 @@
+body{
+    background-image: linear-gradient(to top right, orange, black, darkGreen, gray);
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.sqContainer{
+    width:100%;
+
+}
+.lilPixels{
+    height:5rem;
+    width:100%;
+}
+

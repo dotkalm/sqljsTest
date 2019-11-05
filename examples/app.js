@@ -21,16 +21,19 @@
             const letsSee = []
             const namesArray = []
             contents[0].values.forEach(e =>{ 
+                console.log(e)
+                const color = `rgba(${e[4]},${e[5]},${e[6]},.75)`
                 const newObj = async (colorString, description) => {
                     const newObjAwait = await getColor(colorString, description) 
                     //console.log(newObjAwait)
                     const rowsDiv = document.createElement("div")
                     rowsDiv.setAttribute('class', `${e[9]}`)
-                    rowsDiv.style.height = "50rem"
+                    //rowsDiv.style.height = "50rem"
+
                     const rowObj = yDictionary(newObjAwait)
                     //     console.log(rowObj)
                     Object.keys(rowObj).forEach((ee,ii) => {
-                        orderedDictionary(rowObj[ee], description)
+                        orderedDictionary(rowObj[ee], description, color)
                     })
 
                 }

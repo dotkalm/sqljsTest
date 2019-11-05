@@ -9,7 +9,7 @@
   initSqlJs(config).then(function (SQL) {
 	    //Create the database
 	  var xhr = new XMLHttpRequest();
-	xhr.open('GET', '../trunksale11.sqlite', true);
+	xhr.open('GET', '../pictures1.sqlite', true);
 	xhr.responseType = 'arraybuffer';
 	let contents = []
 	xhr.onload = function(e) {
@@ -21,12 +21,15 @@
             const letsSee = []
             const namesArray = []
             contents[0].values.forEach(e =>{ 
-                console.log(e)
                 namesArray.push(e[9])
-                const newObj = getColor(e[3])
-                return letsSee.push(newObj)
+                const newObj = async (colorString, description) => {
+                    const newObjAwait = await getColor(colorString, description) 
+                    console.log(newObjAwait)
+                }
+                newObj(e[3], e[9])
             })
-            letsSee.forEach((e,i) => {
+            letsSee.forEach((e,i,array) => {
+                console.log(array)
                 const newObj = yDictionary(e) 
                 const rowsDiv = document.createElement("div")
                 rowsDiv.setAttribute('class', `${namesArray[i]}`)

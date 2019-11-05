@@ -21,10 +21,18 @@
             const letsSee = []
             const namesArray = []
             contents[0].values.forEach(e =>{ 
-                namesArray.push(e[9])
                 const newObj = async (colorString, description) => {
                     const newObjAwait = await getColor(colorString, description) 
-                    console.log(newObjAwait)
+                    //console.log(newObjAwait)
+                    const rowsDiv = document.createElement("div")
+                    rowsDiv.setAttribute('class', `${e[9]}`)
+                    rowsDiv.style.height = "50rem"
+                    const rowObj = yDictionary(newObjAwait)
+                    //     console.log(rowObj)
+                    Object.keys(rowObj).forEach((ee,ii) => {
+                        orderedDictionary(rowObj[ee], description)
+                    })
+
                 }
                 newObj(e[3], e[9])
             })
